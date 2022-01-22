@@ -310,5 +310,13 @@
             "1": "https://www.vwo.be/vwo/wp-content/uploads/2021/01/vwo1_online.pdf",
             "2": "https://www.vwo.be/vwo/wp-content/uploads/2021/03/vwo2_online.pdf"
         }
+    },
+    "2022": {
+        "JWO": {
+            "1": "https://www.vwo.be/vwo/wp-content/uploads/2022/01/jwo1_online.pdf"
+        },
+        "VWO": {
+            "1": "https://www.vwo.be/vwo/wp-content/uploads/2022/01/vwo1_online.pdf"
+        }
     }
 }
