@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Alle antwoorden Vlaamse Wiskunde Olympiade en Junior Wiskunde Olympiade</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description"
+        content="Alle antwoorden van de eerste en tweede ronde VWO en JWO. Controleer je antwoorden, bereken je score, oefen door vorige edities te hermaken, en meer.">
+    <link rel="stylesheet" href="voorrondes.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
+    <script type="text/javascript" src="answers.js"></script>
+</head>
+
+<body>
+    <div><b><a href="..">&#8592;Terug naar index</a></b></div>
+    <!--<div>
+    <i>
+      Nam je deel aan de eerste ronde JWO of VWO? Neem deel aan de
+      enqu&ecirc;te en <a href="https://www.vwo.be/vwo/
+      <?php echo date("Y")-1 . "-" . date("Y"); ?>/enquete" target="_blank">
+      bereken je offici&euml;le score op de website van de Vlaamse Wiskunde
+      Olympiade.</a></i>
+  </div>-->
+    <div style="margin-top: 10px">
+        <span>
+            Controleer je antwoorden en bereken je score:
+        </span>
+        <div>
+            <div>
+                <select id="year" style="width:7em"></select>
+                <select id="level">
+                    <option value="VWO">VWO</option>
+                    <option value="JWO">JWO</option>
+                </select>
+                <select id="round">
+                    <option value="1">Ronde 1</option>
+                    <option value="2">Ronde 2</option>
+                </select>
+                <select id="version">
+                </select>
+                <span class="unavailable">
+                    Antwoorden niet beschikbaar.
+                </span>
+                <input type="button" id="changedata">
+            </div>
+            <div>
+                <input type="button" id="openpdf" value="Open vragenbundel in nieuw tabblad" disabled="true">
+            </div>
+            <div>
+                <span id="upload-booklet">
+                    Bepaal de volgorde van de antwoorden aan de hand van je bundeltje:
+                    <input id="booklet" type="file" />
+                    <input id="booklet2" type="file" />
+                </span>
+                <span id="booklet-loading">
+                    Duurt enkele seconden&nbsp;<img src="loading.gif" height="13px">
+                </span>
+            </div>
+            <div class="input">
+                <span>
+                    Jouw antwoorden
+                </span>
+                <div id="inputfields"></div>
+                <div class="buttons">
+                    <input type="button" value="Maak leeg" id="clear">
+                    <input type="button" value="Kopieer" id="copyinput">
+                    <input type="button" value="Controleer" id="check">
+                </div>
+                <div class="cutoff">Cesuur: <span id="cutoff"></span></div>
+                <div class="score">Jouw score: <span id="score"></span></div>
+            </div>
+            <!--</div>-->
+            <div class="check">
+                <span>Verbetersleutel</span>
+                <div id="checkfields"></div>
+                <div class="buttons">
+                    <input type="button" value="Toon alles" id="showall">
+                    <input type="button" value="Verberg alles" id="hideall">
+                    <input type="button" value="Kopieer" id="copycheck">
+                </div>
+            </div>
+            <span class="input-hidden"></span>
+        </div>
+    </div>
+    <div>
+        <p>
+            <i>
+                Deze antwoorden zijn niet officieel, maar zijn opgesteld door de leden van de <a
+                    href="https://discord.com/invite/8YY82PU4fJ" target="_blank">Q-E-D Discord</a> en het vroegere <a
+                    href="https://web.archive.org/web/20190916110042/https://www.q-e-d.be/" target="_blank">Q-E-D
+                    forum</a>. Foutje, bug of suggestie? Laat je horen op Q-E-D.
+            </i>
+        </p>
+    </div>
+    <div style="clear:both">
+        <!-- Bron oude cesuren: https://docs.google.com/spreadsheets/d/1i3_CmLqz9HmBn-u04q5Pj5P1Owt6UnIPAxatq7HgEUs/pub# -->
+        <div id="chart_div" style="height: 300px; width: 100%"></div>
+        Lijst met alle antwoorden:
+        <input type="button" id="showhidelist" value="Toon / verberg">
+        <div>
+            <pre id="list"></pre>
+        </div>
+    </div>
+</body>
+
+</html>
