@@ -1,0 +1,207 @@
+.block-left {
+    margin-right: 6px;
+}
+
+.block-right {
+    margin-left: 6px;
+}
+
+body {
+    font-family: verdana;
+    font-size: 10pt;
+}
+
+.input-field, .check-field {
+    display: inline-block;
+    font-family: Consolas;
+    height: 19px;
+    width: 18px;
+    margin: 2px;
+    text-align: center;
+    line-height: 19px;
+    padding: 0px;
+    text-transform: uppercase;
+    border-width: 0px 0px 0px;
+    background-color: #e8e8e8;
+    overflow: hidden;
+}
+
+.input-field:focus {
+    /*outline: 0px solid transparent;*/
+}
+
+.check {
+    text-align: center;
+    float: left;
+    margin-left: 50px;
+    clear: right;
+}
+
+.check, .input {
+    margin-bottom: 2em;
+    margin-top: 1em;
+}
+
+.check-field {
+    cursor: pointer;
+}
+
+.checkfield-number {
+    font-style: italic;
+    font-size: 85%;
+    color: #c9c9c9;
+    background-color: #f7f7f7;
+}
+
+.cutoff, .score {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.input {
+    float: left;
+    text-align: center;
+}
+
+.input-hidden {
+    position: absolute;
+    left: -1000px;
+    top: -1000px;
+}
+
+.feedback-correct {
+    background-image: radial-gradient(#6fce2f, #e8e8e8);
+}
+
+.feedback-blank {
+    background-image: radial-gradient(#54b6dd, #e8e8e8);
+}
+
+.feedback-wrong {
+    background-image: radial-gradient(#dd4040, #e8e8e8);
+}
+
+h1 {
+    font-size: 1.2em;
+    margin-top: 1em;
+    clear: both;
+}
+
+p {
+    clear: both;
+    float: left;
+    display: block;
+    position: relative;
+    margin-top: 0px;
+    margin-bottom: 2em;
+}
+
+.score {
+    visibility: hidden;
+}
+
+.unavailable, #changedata {
+    color: red;
+    font-weight: bold;
+    visibility: hidden;
+}
+
+#upload-booklet, #booklet-loading, #version {
+    visibility: hidden;
+}
+
+#booklet2 {
+    display: none;
+}
+
+#list {
+    display: none;
+}
+
+#all_answers {
+    margin-bottom: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .check {
+        display: block;
+        margin-left: 0px;
+    }
+
+    .input {
+        margin-top: 20px;
+        margin-bottom: 1em;
+    }
+
+    .check, .input, #all_answers {
+        width: 100%;
+    }
+
+    #all_answers {
+        text-align: center;
+    }
+
+    .selection {
+        text-align: center;
+    }
+
+    #changedata, #openpdf, #showhidelist, .unavailable {
+        margin: auto;
+        display: block;
+    }
+
+    #changedata, .unavailable {
+        visibility: hidden;
+    }
+}
+
+pre {
+    display: inline-block;
+    text-align: left;
+    font-family: Consolas;
+}
+
+input[type=button] {
+    padding: 1px 6px;
+    font-family: arial;
+}
+
+@media (pointer:none), (pointer:coarse) {
+    .block {
+        width: 48%
+    }
+
+    .block-left {
+        margin-right: 1%;
+    }
+
+    .block-right {
+        margin-left: 1%;
+    }
+
+    body, input, select {
+        font-size: 14pt;
+    }
+
+    input, select {
+        margin: 3px;
+    }
+
+    .input-field, .check-field {
+        /*height: 25px;
+      width: 25px;
+      margin: 4px 2px;
+      font-size: 14pt;
+      line-height: 25px;*/
+        /*padding-top: 100%;*/
+        width: 7%;
+        margin: 3px 1.4%;
+        height: 25px;
+        line-height: 25px;
+        font-size: 14pt;
+    }
+
+    .checkfield-number {
+        font-size: 85%;
+    }
+}
