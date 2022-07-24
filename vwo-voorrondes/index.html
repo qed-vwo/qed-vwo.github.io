@@ -7,6 +7,7 @@
     <meta name="description"
         content="Alle antwoorden van de eerste en tweede ronde VWO en JWO. Controleer je antwoorden, bereken je score, oefen door vorige edities te hermaken, en meer.">
     <link rel="stylesheet" href="voorrondes.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js"></script>
@@ -14,7 +15,7 @@
 </head>
 
 <body>
-    <div><b><a href="..">&#8592;Terug naar index</a></b></div>
+    <div class="go-back"><b><a href=".." class="go-back-a">&#8592;Terug naar index</a></b></div>
     <!--<div>
     <i>
       Nam je deel aan de eerste ronde JWO of VWO? Neem deel aan de
@@ -23,86 +24,111 @@
       bereken je offici&euml;le score op de website van de Vlaamse Wiskunde
       Olympiade.</a></i>
   </div>-->
-    <div style="margin-top: 10px">
-        <span>
-            Controleer je antwoorden en bereken je score:
-        </span>
+    <div>
         <div>
-            <div>
-                <select id="year" style="width:7em"></select>
-                <select id="level">
-                    <option value="VWO">VWO</option>
-                    <option value="JWO">JWO</option>
-                </select>
-                <select id="round">
-                    <option value="1">Ronde 1</option>
-                    <option value="2">Ronde 2</option>
-                </select>
-                <select id="version">
-                </select>
-                <span class="unavailable">
-                    Antwoorden niet beschikbaar.
-                </span>
-                <input type="button" id="changedata">
+          <div class="heading">
+            <h1 class="top-heading">Alle Antwoorden</h1>
+            <h3 class="sub-top-heading">VWO - JWO</h3>
+          </div>
+          <!--
+          <span>
+              Controleer je antwoorden en bereken je score:
+          </span> -->
+          <div class="body1-container">
+            <div class="input-fields-container">
+              <div class="input-fields">
+                  <select class="select-field" id="year" style="width:7em"></select>
+                  <select class="select-field" id="level">
+                      <option value="VWO">VWO</option>
+                      <option value="JWO">JWO</option>
+                  </select>
+                  <select class="select-field" id="round">
+                      <option value="1">Ronde 1</option>
+                      <option value="2">Ronde 2</option>
+                  </select>
+                  <select class="select-field" id="version">
+                  </select>
+                  <span class="unavailable">
+                      Antwoorden niet beschikbaar.
+                  </span>
+                  <input type="button" id="changedata">
+              </div>
+              <div>
+                  <span id="upload-booklet">
+                      Bepaal de volgorde van de antwoorden aan de hand van je bundeltje:
+                      <input id="booklet" type="file" />
+                      <input id="booklet2" type="file" />
+                  </span>
+                  <span id="booklet-loading">
+                      Duurt enkele seconden&nbsp;<img src="loading.gif" height="13px">
+                  </span>
+              </div>
             </div>
-            <div>
-                <input type="button" id="openpdf" value="Open vragenbundel in nieuw tabblad" disabled="true">
+            <div class="grid-container">
+              <div class="input grid-item">
+                  <span class="title2">
+                      Jouw antwoorden
+                  </span>
+                  <div id="inputfields"></div>
+                  <div class="buttons">
+                      <input class="answer-btns" type="button" value="Maak leeg" id="clear">
+                      <input class="answer-btns" type="button" value="Kopieer" id="copyinput">
+                      <input class="answer-btns" type="button" value="Controleer" id="check">
+                  </div>
+              </div>
+
+              <!--</div>-->
+              <div class="check grid-item">
+                  <span class="title2">Verbetersleutel</span>
+                  <div id="checkfields"></div>
+                  <div class="buttons">
+                      <input class="answer-btns" type="button" value="Toon alles" id="showall">
+                      <input class="answer-btns" type="button" value="Verberg alles" id="hideall">
+                      <input class="answer-btns" type="button" value="Kopieer" id="copycheck">
+                  </div>
+              </div>
+              <span class="input-hidden"></span>
             </div>
-            <div>
-                <span id="upload-booklet">
-                    Bepaal de volgorde van de antwoorden aan de hand van je bundeltje:
-                    <input id="booklet" type="file" />
-                    <input id="booklet2" type="file" />
-                </span>
-                <span id="booklet-loading">
-                    Duurt enkele seconden&nbsp;<img src="loading.gif" height="13px">
-                </span>
+
+            <div class="cesuur-score">
+              <div class="cutoff">Cesuur: <span id="cutoff"></span></div>
+              <div class="score">Jouw score: <span id="score"></span></div>
             </div>
-            <div class="input">
-                <span>
-                    Jouw antwoorden
-                </span>
-                <div id="inputfields"></div>
-                <div class="buttons">
-                    <input type="button" value="Maak leeg" id="clear">
-                    <input type="button" value="Kopieer" id="copyinput">
-                    <input type="button" value="Controleer" id="check">
-                </div>
-                <div class="cutoff">Cesuur: <span id="cutoff"></span></div>
-                <div class="score">Jouw score: <span id="score"></span></div>
+
+            <div class="open-bundle">
+                <input class="bundle-button" type="button" id="openpdf" value="Open vragenbundel in nieuw tabblad" disabled="true">
             </div>
-            <!--</div>-->
-            <div class="check">
-                <span>Verbetersleutel</span>
-                <div id="checkfields"></div>
-                <div class="buttons">
-                    <input type="button" value="Toon alles" id="showall">
-                    <input type="button" value="Verberg alles" id="hideall">
-                    <input type="button" value="Kopieer" id="copycheck">
-                </div>
-            </div>
-            <span class="input-hidden"></span>
+          </div>
         </div>
     </div>
-    <div>
-        <p>
-            <i>
-                Deze antwoorden zijn niet officieel, maar zijn opgesteld door de leden van de <a
-                    href="https://discord.com/invite/8YY82PU4fJ" target="_blank">Q-E-D Discord</a> en het vroegere <a
-                    href="https://web.archive.org/web/20190916110042/https://www.q-e-d.be/" target="_blank">Q-E-D
-                    forum</a>. Foutje, bug of suggestie? Laat je horen op Q-E-D.
-            </i>
-        </p>
+    <div class="info">
+      <a target="_blank" href="https://discord.com/invite/8YY82PU4fJ"><svg class="discord" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Pro 6.1.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2022 Fonticons, Inc. --><path d="M524.531,69.836a1.5,1.5,0,0,0-.764-.7A485.065,485.065,0,0,0,404.081,32.03a1.816,1.816,0,0,0-1.923.91,337.461,337.461,0,0,0-14.9,30.6,447.848,447.848,0,0,0-134.426,0,309.541,309.541,0,0,0-15.135-30.6,1.89,1.89,0,0,0-1.924-.91A483.689,483.689,0,0,0,116.085,69.137a1.712,1.712,0,0,0-.788.676C39.068,183.651,18.186,294.69,28.43,404.354a2.016,2.016,0,0,0,.765,1.375A487.666,487.666,0,0,0,176.02,479.918a1.9,1.9,0,0,0,2.063-.676A348.2,348.2,0,0,0,208.12,430.4a1.86,1.86,0,0,0-1.019-2.588,321.173,321.173,0,0,1-45.868-21.853,1.885,1.885,0,0,1-.185-3.126c3.082-2.309,6.166-4.711,9.109-7.137a1.819,1.819,0,0,1,1.9-.256c96.229,43.917,200.41,43.917,295.5,0a1.812,1.812,0,0,1,1.924.233c2.944,2.426,6.027,4.851,9.132,7.16a1.884,1.884,0,0,1-.162,3.126,301.407,301.407,0,0,1-45.89,21.83,1.875,1.875,0,0,0-1,2.611,391.055,391.055,0,0,0,30.014,48.815,1.864,1.864,0,0,0,2.063.7A486.048,486.048,0,0,0,610.7,405.729a1.882,1.882,0,0,0,.765-1.352C623.729,277.594,590.933,167.465,524.531,69.836ZM222.491,337.58c-28.972,0-52.844-26.587-52.844-59.239S193.056,219.1,222.491,219.1c29.665,0,53.306,26.82,52.843,59.239C275.334,310.993,251.924,337.58,222.491,337.58Zm195.38,0c-28.971,0-52.843-26.587-52.843-59.239S388.437,219.1,417.871,219.1c29.667,0,53.307,26.82,52.844,59.239C470.715,310.993,447.538,337.58,417.871,337.58Z"/></svg></a>
+      <p class="info-p">
+
+          Deze antwoorden zijn niet officieel, maar zijn opgesteld door de leden van de <a
+          href="https://discord.com/invite/8YY82PU4fJ" target="_blank">Q-E-D Discord</a> en het vroegere <a
+          href="https://web.archive.org/web/20190916110042/https://www.q-e-d.be/" target="_blank">Q-E-D
+          forum</a>. Foutje, bug of suggestie? Laat je horen op Q-E-D.
+
+      </p>
     </div>
     <div style="clear:both">
         <!-- Bron oude cesuren: https://docs.google.com/spreadsheets/d/1i3_CmLqz9HmBn-u04q5Pj5P1Owt6UnIPAxatq7HgEUs/pub# -->
-        <div id="chart_div" style="height: 300px; width: 100%"></div>
-        Lijst met alle antwoorden:
-        <input type="button" id="showhidelist" value="Toon / verberg">
-        <div>
-            <pre id="list"></pre>
-        </div>
+      <div class="body2-container">
+          <h1 class="card-heading">Cesuren per jaar</h1>
+          <div id="chart_div" style="height: 400px; width: 100%"></div>
+      </div>
     </div>
+
+    <div class="body3-container">
+      <h1 class="card-heading" style="color: black;">Lijst met alle antwoorden:</h1>
+
+      <input class="toon-antwoorden-button" type="button" id="showhidelist" value="Toon / verberg">
+      <div>
+          <pre id="list"></pre>
+      </div>
+    </div>
+
 </body>
 
 </html>

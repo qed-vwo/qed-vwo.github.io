@@ -19,24 +19,45 @@ var startYearV = 1986;
 var suggestionThreshold = 65;
 
 chartOptions = {
+    legend: {textStyle: {color: '#afbac4'}},
     hAxis: {
         title: "Jaar",
         format: "0000",
         minValue: startYearV - 1,
         maxValue: currentYear + 1,
-        ticks: range(startYearV, currentYear, 1),
+        ticks: range(startYearV, currentYear+1, 2),
         //gridlines: {count: 2},
+        gridlineColor: '#2e353b',
+        titleTextStyle: {
+          color: "white",
+          fontSize: "17"
+        },
+        textStyle:{
+          color: "#afbac4"
+        },
+        minorGridlines:{color:'#2e353b'},
+        baselineColor: "#2e353b"
     },
     vAxis: {
         title: "Cesuur",
         minValue: 70,
         maxValue: 130,
         gridlines: {
-            count: 10
+            count: 10,
+            color: "#2e353b"
         },
+        titleTextStyle: {
+          color: "white",
+          fontSize: "17"
+        },
+        textStyle:{
+          color: "#afbac4"
+        },
+        minorGridlines:{color:'#2e353b'},
+        baselineColor: "#2e353b"
         //viewWindowMode: "pretty",
     },
-    pointSize: 5,
+    pointSize: 2,
     explorer: {
         axis: "horizontal",
         keepInBounds: true,
@@ -48,18 +69,26 @@ chartOptions = {
         // JWO: D53500
         // VWO: 003973
         0: {
-            color: "#E47D5C"
+            color: "#f52762"
         },
         1: {
-            color: "#D53500"
+            color: "#ebe721"
         },
         2: {
-            color: "#5C81A5"
+            color: "#43a147"
         },
         3: {
-            color: "#003973"
+            color: "#a42ac9"
         },
-    }
+    },
+    backgroundColor: {
+      fill: "transparent"
+    },
+    tooltip: {
+      isHtml: true
+    },
+    focusTarget: 'category'
+
 };
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.min.js";
@@ -67,6 +96,8 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = "https://cdnjs.cloudflare.com/ajax/libs
 google.charts.load("current", {
     packages: ["corechart", "line"]
 });
+
+
 
 $(window).resize(function() {
     if (this.resizeTO) clearTimeout(this.resizeTO);
@@ -137,7 +168,7 @@ function bookletOnUpload(event, fragmentsOnly) {
     if (!file || file.type != "application/pdf") {
         return;
     }
-    $("#booklet-loading").css("visibility", "visible");
+    $("#booklet-loading").css("dipslay", "inline-block");
     var data = getData();
     var code = dataToCode(data);
     answers[code] = "";
@@ -170,7 +201,7 @@ function checkAnswers() {
         }
         var total = 5 * answers.replace(blankDefault, "").length;
         $("#score").html(score + " / " + total);
-        $(".score").css("visibility", "visible");
+        $(".score").css("display", "inline-block");
     } else {
         return;
     }
@@ -257,6 +288,7 @@ function dataToCode(data) {
 function drawChart() {
     var chart = new google.visualization.LineChart(document.getElementById("chart_div"));
     chart.draw(chartData, chartOptions);
+
 }
 
 function emptyInput() {
@@ -403,11 +435,11 @@ function hideFeedback(element) {
     element.removeClass("feedback-blank");
     element.removeClass("feedback-wrong");
     hideScore();
-    $("#changedata").css("visibility", "hidden");
+    $("#changedata").css("display", "none");
 }
 
 function hideScore() {
-    $(".score").css("visibility", "hidden");
+    $(".score").css("display", "none");
 }
 
 function isYearPresent(year) {
@@ -474,7 +506,7 @@ function parseBooklet(pdf, fragmentsOnly) {
         }
         answers[code] = getCurrentMainAnswersAccordingToText(text);
         selectChange();
-        $("#booklet-loading").css("visibility", "hidden");
+        $("#booklet-loading").css("display", "none");
     });
 }
 
@@ -648,13 +680,13 @@ function selectChange(event) {
         $("#openpdf").prop("disabled", true);
     }
     if (getCurrentAnswers()) {
-        $(".unavailable").css("visibility", "hidden");
+        $(".unavailable").css("display", "none");
         $("#check").prop("disabled", false);
         $("#showall").prop("disabled", false);
         $("#hideall").prop("disabled", false);
         $("#copycheck").prop("disabled", false);
     } else {
-        $(".unavailable").css("visibility", "visible");
+        $(".unavailable").css("display", "inline-block");
         $("#check").prop("disabled", true);
         $("#showall").prop("disabled", true);
         $("#hideall").prop("disabled", true);
@@ -667,10 +699,10 @@ function selectChange(event) {
     data.version = getMainVersion(data);
     var codeMain = dataToCode(data);
     if (getVersion() != getMainVersion(data) && fragments[code] && answers[codeMain]) {
-        $("#upload-booklet").css("visibility", "visible");
+        $("#upload-booklet").css("display", "inline-block");
     } else {
-        $("#upload-booklet").css("visibility", "hidden");
-        $("#booklet-loading").css("visibility", "hidden");
+        $("#upload-booklet").css("display", "none");
+        $("#booklet-loading").css("display", "none");
         $("#booklet").val("");
     }
 }
@@ -727,6 +759,7 @@ function setChartData() {
         pattern: "0"
     });
     formatter.format(chartData, 0);
+
 }
 
 function setCursor(element, position) {
@@ -876,11 +909,11 @@ function suggestData(data) {
     if (data.version && data.version != getVersion()) newData.push(data.version);
     $("#changedata").attr("value", "Bedoelde je: " + newData.join(" ") + "?");
     $("#changedata").click(function() {
-        $("#changedata").css("visibility", "hidden");
+        $("#changedata").css("display", "none");
         setData(data);
         checkAnswers();
     });
-    $("#changedata").css("visibility", "visible");
+    $("#changedata").css("display", "inline-block");
 }
 
 function updateCutoff() {
@@ -1059,10 +1092,10 @@ function refreshVersionSelect() {
             $("#version").append($("<option></option>").attr("value", versions[i]).html(versions[i]));
             $("#version").val(getMainVersion(data));
         }
-        $("#version").css("visibility", "visible");
+        $("#version").css("display", "inline-block");
     } else {
         $("#version").val(null);
-        $("#version").css("visibility", "hidden");
+        $("#version").css("display", "none");
     }
 }
 
