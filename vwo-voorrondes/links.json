@@ -320,5 +320,23 @@
             "1": "https://www.vwo.be/vwo/wp-content/uploads/2022/01/vwo1_online.pdf",
             "2": "https://www.vwo.be/vwo/wp-content/uploads/2022/03/vwo2_online.pdf"
         }
+    },
+    "2023": {
+        "JWO": {
+            "1": "https://www.vwo.be/vwo/wp-content/uploads/2023/09/jwo1_2023.pdf",
+            "2": "https://www.vwo.be/vwo/wp-content/uploads/2023/09/jwo2_2023.pdf"
+        },
+        "VWO": {
+            "1": "https://www.vwo.be/vwo/wp-content/uploads/2023/09/vwo1_2023.pdf",
+            "2": "https://www.vwo.be/vwo/wp-content/uploads/2023/09/vwo2_2023.pdf"
+        }
+    },
+    "2024": {
+        "JWO": {
+            "1": "https://www.vwo.be/vwo/wp-content/uploads/2024/01/jwo_1_2024.pdf"
+        },
+        "VWO": {
+            "1": "https://www.vwo.be/vwo/wp-content/uploads/2024/01/vwo_1_2024.pdf"
+        }
     }
 }
