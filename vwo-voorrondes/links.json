@@ -350,6 +350,16 @@
             "1": "https://www.vwo.be/vwo/wp-content/uploads/2025/01/vwo_1_2025.pdf",
             "2": "https://www.vwo.be/vwo/wp-content/uploads/2025/02/vwo_2_2025.pdf"
         }
+    },
+     "2026": {
+        "JWO": {
+            "1": "https://www.vwo.be/vwo/wp-content/uploads/2026/01/boekje-JWO-R1.pdf",
+            "2": "https://www.vwo.be/vwo/wp-content/uploads/2026/01/boekje-JWO-R2.pdf"
+        },
+        "VWO": {
+            "1": "https://www.vwo.be/vwo/wp-content/uploads/2026/03/boekje-VWO-R1.pdf",
+            "2": "https://www.vwo.be/vwo/wp-content/uploads/2026/03/boekje-VWO-R2.pdf"
+        }
     }
 }
 
